@@ -60,3 +60,16 @@ But it's still recommended to test the production build with `test:e2e` before d
 npm run build
 npm run test:e2e
 ```
+# Spotify-Playlist-Analyzer
+
+## Overview
+  The goal of this application isto analyze a collaborative spotify playlist and present its data visually.
+  
+ 
+ ## Goals
+ 
+ * Be able to take in a user's spotify playlist.
+ * See who added the most songs.
+ * See who added the least songs.
+ * Most frequent artist?
+ * Most prevalent genre?
