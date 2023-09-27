@@ -3,11 +3,10 @@
   export default {
     methods: {
       spotifyLogin() {
-        const clientId = import.meta.env.VUE_APP_SPOT_CLIENT_ID;
-        const redirectUri = 'https://spotify-analyst.web.app/callback';
-        const scopes = 'user-read-private user-read-email'; // Add necessary scopes
-
-        const authUrl = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=code&redirect_uri=${redirectUri}&scope=${scopes}`;
+        const clientId:string = import.meta.env.VITE_APP_SPOT_CLIENT_ID;
+        const redirectUri:string = 'https://spotify-analyst.web.app/callback';
+        const scopes:string = 'user-read-private user-read-email'; // Add necessary scopes
+        const authUrl:string = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=code&redirect_uri=${redirectUri}&scope=${scopes}`;
 
         // Redirect the user to Spotify for authentication
         window.location.href = authUrl;
