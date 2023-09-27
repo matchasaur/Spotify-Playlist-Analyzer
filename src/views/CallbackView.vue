@@ -1,24 +1,22 @@
 <script lang="ts">
-    import axios from 'axios';
 
     export default {
         mounted() {
-            const code = this.$route.query.code; // Get the code from the query parameters
+            const code:any = this.$route.query.code; // Get the code from the query parameters
 
             // Define your Spotify client ID and client secret
-            const clientId = import.meta.env.VUE_APP_SPOT_CLIENT_ID;
-            const clientSecret = import.meta.env.VUE_APP_SPOT_CLIENT_SECRET;
-            const redirectUri = 'https://spotify-analyst.web.app/callback';
+            const clientId = 'YOUR_CLIENT_ID';
+            const clientSecret = 'YOUR_CLIENT_SECRET';
+            const redirectUri = 'YOUR_REDIRECT_URI';
 
             // Create a base64-encoded string of your client ID and client secret
             const base64Credentials = btoa(`${clientId}:${clientSecret}`);
 
             // Define the data to be sent in the POST request
-            const data:any = {
-            grant_type: 'authorization_code',
-            code: code,
-            redirect_uri: redirectUri,
-            };
+            const data = new URLSearchParams();
+            data.append('grant_type', 'authorization_code');
+            data.append('code', code);
+            data.append('redirect_uri', redirectUri);
 
             // Define the headers for the POST request
             const headers = {
@@ -26,11 +24,21 @@
             'Content-Type': 'application/x-www-form-urlencoded',
             };
 
-            // Perform the POST request to exchange the code for an access token
-            axios.post('https://accounts.spotify.com/api/token', new URLSearchParams(data), { headers })
+            // Send the POST request using fetch
+            fetch('https://accounts.spotify.com/api/token', {
+            method: 'POST',
+            headers: headers,
+            body: data,
+            })
             .then(response => {
-                const accessToken = response.data.access_token;
-                const expiresIn = response.data.expires_in;
+                if (!response.ok) {
+                throw new Error('Failed to retrieve access token');
+                }
+                return response.json();
+            })
+            .then(data => {
+                const accessToken = data.access_token;
+                const expiresIn = data.expires_in;
 
                 // Store the access token securely (e.g., in Vuex or localStorage)
                 // Set an expiration time based on the 'expiresIn' value
@@ -39,8 +47,7 @@
                 // For example, you can redirect to the user's dashboard
                 this.$router.push('/dashboard');
             })
-            .catch(error => {
-                console.error('Error exchanging code for access token:', error);
+            .catch(error => {console.error('Error exchanging code for access token:', error);
                 // Handle errors, e.g., by displaying an error message to the user
             });
         },
