@@ -6,20 +6,26 @@ import { useAuthStore } from './stores/auth';
 </script>
 
 <template>
-  <v-layout class="rounded rounded-md">
-    <v-app-bar class="app-bar" color="surface-variant" title="Application bar" rounded>
-      <!-- <v-btn @click="spotifyLogin()">Log In</v-btn> -->
-      <login-button></login-button>
-    </v-app-bar>
-  </v-layout>
-  <RouterView />
+  <v-app>
+    <v-row no-gutters style="height: 15%; flex: initial">
+      <v-col>
+        <v-app-bar app class="w-50" style="left: 50%; margin-left: -25%; margin-top: 5dvh;" absolute color="surface-variant" title="Application bar" rounded>
+        <login-button></login-button>
+        </v-app-bar>
+      </v-col>
+    </v-row>
+
+    <v-row>
+      <v-col>
+        <v-main>
+        <h1>Hello World!</h1>
+        <RouterView></RouterView>
+        </v-main>
+      </v-col>
+    </v-row>
+  </v-app>
 </template>
 
 <style scoped>
-.app-bar {
-  margin-top: 20px;
-  max-width: 75%;
-  display: flex;
-}
 
 </style>
