@@ -6,11 +6,11 @@
       <v-row>
         <v-col cols="12" sm="6">
           <v-select
-            v-model="selectedPlaylist"
             :items="playlists"
             label="Select a Playlist"
             item-text="name"
             item-value="id"
+            return-object
           ></v-select>
         </v-col>
       </v-row>
@@ -19,64 +19,41 @@
 </template>
 
 <script lang="ts">
-    import { useAuthStore } from '@/stores/auth';
-    import { useProfStore } from '@/stores/profile';
-    export default {
-        data() {
-            return {
-            playlists: [],
-            selectedPlaylist: null,
+  import ApiService from '@/services/ApiService'
+
+  export default {
+  data() {
+      return {
+      playlists: [] as { id: string; name: string; }[],
+      };
+  },
+  methods: {
+      async getUserInfo() {
+          await ApiService.grabUser();
+      },
+      async retrievePlaylists(){
+          const data = await ApiService.grabPlaylists();
+          // .then(response => response.json())
+          // .then(result => {
+          //   return result;
+          // })
+          // .catch(error=> console.log('error', error));
+          console.log(data);
+
+          data.items.forEach((item: any) => {
+            let temp = {
+              name: item.name,
+              id: item.id,
             };
-        },
-        methods: {
-            getUserInfo() {
-                let myHeaders:any = new Headers();
-                const accessToken = useAuthStore().getAccessToken;
-
-                myHeaders.append("Authorization", `Bearer ${accessToken}`);
-
-                var requestOptions:Object = {
-                method: 'GET',
-                headers: myHeaders,
-                redirect: 'follow'
-                };
-
-                fetch("https://api.spotify.com/v1/me", requestOptions)
-                .then(response => response.json())
-                .then(result => {
-                    console.log(result);
-                    useProfStore().setUserID(result.id);
-                })
-                .catch(error => console.log('error', error));
-            },
-            retrievePlaylists(){
-                let myHeaders:any = new Headers();
-                const accessToken = useAuthStore().getAccessToken;
-                let user_id = useProfStore().getUserID;
-
-                myHeaders.append("Authorization", `Bearer ${accessToken}`);
-
-                var requestOptions:Object = {
-                method: 'GET',
-                headers: myHeaders,
-                redirect: 'follow'
-                };
-
-                fetch(`https://api.spotify.com/v1/users/${user_id}/playlists`, requestOptions)
-                .then(response => response.json())
-                .then(result => {
-                    let doc = result.items
-                    doc.forEach((item: any) => {
-                        console.log(item);
-                    });
-                })
-                .catch(error => console.log('error', error));
-            },
-        },
-        Data: {
-            result: null,
-        }    
-    }
+            this.playlists.push(temp);
+          });
+          console.log(this.playlists);
+      },
+  },
+  Data: {
+      result: null,
+  }    
+}
 
 </script>
 
