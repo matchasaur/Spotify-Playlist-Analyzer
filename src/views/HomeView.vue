@@ -22,10 +22,4 @@ import LoginButton from '@/components/LoginButton.vue';
 </script>
 
 <template>
-  <v-layout class="rounded rounded-md">
-    <v-app-bar color="surface-variant" title="Application bar">
-      <!-- <v-btn @click="spotifyLogin()">Log In</v-btn> -->
-      <login-button></login-button>
-    </v-app-bar>
-  </v-layout>
 </template>
