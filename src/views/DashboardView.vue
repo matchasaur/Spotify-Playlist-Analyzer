@@ -8,7 +8,7 @@
           <v-select
             :items="playlists"
             label="Select a Playlist"
-            item-text="name"
+            item-title="name"
             item-value="id"
             return-object
           ></v-select>

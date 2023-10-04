@@ -18,7 +18,6 @@ import { useAuthStore } from './stores/auth';
     <v-row>
       <v-col>
         <v-main>
-        <h1>Hello World!</h1>
         <RouterView></RouterView>
         </v-main>
       </v-col>
