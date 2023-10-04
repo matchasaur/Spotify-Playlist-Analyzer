@@ -92,10 +92,12 @@
         <v-menu transition="slide-y-transition">
           <template v-slot:activator="{ props }">
             <v-btn
-              color="primary"
               v-bind="props"
-            >
-              My Account
+              rounded="xl"
+              :ripple="false"
+              variant="plain"
+                >
+                <v-avatar image="https://yt3.googleusercontent.com/bdy-PA8UFHHyX5dQ1rLzZXdLapxXynekq2T6rdhc21XW7VMJbfnVLCWKk2IA-JH7euOz2Zvm9g=s900-c-k-c0x00ffffff-no-rj"></v-avatar>
             </v-btn>
           </template>
           <v-list>
