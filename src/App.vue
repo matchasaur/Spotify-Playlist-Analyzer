@@ -9,7 +9,7 @@ import { useAuthStore } from './stores/auth';
   <v-app>
     <v-row no-gutters style="height: 15%; flex: initial">
       <v-col>
-        <v-app-bar app class="w-50" style="left: 50%; margin-left: -25%; margin-top: 5dvh;" absolute color="surface-variant" title="Application bar" rounded>
+        <v-app-bar app class="w-50" style="left: 50%; margin-left: -25%; margin-top: 5dvh;" absolute color="surface-variant" title="Application bar" rounded="xl" :elevation="10">
         <login-button></login-button>
         </v-app-bar>
       </v-col>
@@ -18,7 +18,7 @@ import { useAuthStore } from './stores/auth';
     <v-row>
       <v-col>
         <v-main>
-        <RouterView></RouterView>
+            <RouterView></RouterView>
         </v-main>
       </v-col>
     </v-row>
@@ -26,5 +26,8 @@ import { useAuthStore } from './stores/auth';
 </template>
 
 <style scoped>
-
+.main {
+  display: flex;
+  justify-content: center;
+}
 </style>

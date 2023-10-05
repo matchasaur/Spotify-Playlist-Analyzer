@@ -1,26 +1,26 @@
 <template>
-    <v-app>
-    <v-container>
-      <v-btn @click="getUserInfo()">Get User Info</v-btn>
-      <v-btn @click="retrievePlaylists()">Get playlists</v-btn>
-      <v-row>
-        <v-col cols="12" sm="6">
-          <v-select
-            :items="playlists"
-            label="Select a Playlist"
-            item-title="name"
-            item-value="id"
-            return-object
-          ></v-select>
-        </v-col>
-      </v-row>
-    </v-container>
+  <v-app>
+    <div class="d-flex align-center flex-column">
+      <v-sheet class="w-75" :elevation="13" :height="200" color="green-lighten-3" rounded="true">
+        <div class="d-flex align-center flex-column">
+          <v-btn class="w-50" @click="getUserInfo()">Get User Info</v-btn>
+          <v-btn class="w-50" @click="retrievePlaylists()">Get playlists</v-btn>
+        </div>
+        <v-row>
+          <v-col cols="12" sm="6">
+            <v-select :items="playlists" label="Select a Playlist" item-title="name" item-value="id"
+              return-object></v-select>
+          </v-col>
+        </v-row>
+      </v-sheet>
+    </div>
   </v-app>
 </template>
 
 <script lang="ts">
   import ApiService from '@/services/ApiService'
-
+  import MainBody from '@/components/MainBody.vue';
+  
   export default {
   data() {
       return {
@@ -33,12 +33,8 @@
       },
       async retrievePlaylists(){
           const data = await ApiService.grabPlaylists();
-          // .then(response => response.json())
-          // .then(result => {
-          //   return result;
-          // })
-          // .catch(error=> console.log('error', error));
-          console.log(data);
+          
+          console.log(data); //Remove this 
 
           data.items.forEach((item: any) => {
             let temp = {
@@ -47,7 +43,7 @@
             };
             this.playlists.push(temp);
           });
-          console.log(this.playlists);
+          console.log(this.playlists); //Remove this
       },
   },
   Data: {
