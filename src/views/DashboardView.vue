@@ -1,7 +1,7 @@
 <template>
   <v-app>
-    <div class="d-flex align-center flex-column">
-      <v-sheet class="w-75" :elevation="13" :height="200" color="green-lighten-3" rounded="true">
+    <div class="d-flex align-center flex-column" style="background-color: aqua;">
+      <v-sheet class="w-75 h-screen" :elevation="24" color="green-lighten-3" rounded="xl" >
         <div class="d-flex align-center flex-column">
           <v-btn class="w-50" @click="getUserInfo()">Get User Info</v-btn>
           <v-btn class="w-50" @click="retrievePlaylists()">Get playlists</v-btn>
