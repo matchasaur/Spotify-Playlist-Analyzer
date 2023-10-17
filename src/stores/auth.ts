@@ -15,7 +15,7 @@ export const useAuthStore = defineStore('auth', {
     },
      async isAuthenticated(): Promise<boolean> {
       let token = localStorage.getItem('token');
-      console.log('From Auth: ', token);
+      //console.log('From Auth: ', token);
       return (token) ? true : false;
     },
   },

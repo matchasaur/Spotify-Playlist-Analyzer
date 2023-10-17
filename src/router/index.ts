@@ -3,6 +3,7 @@ import HomeView from '../views/HomeView.vue'
 import CallbackView from '../views/CallbackView.vue'
 import DashboardView from '@/views/DashboardView.vue'
 import ErrorView from '@/views/ErrorView.vue'
+import ResultsView from '@/views/ResultsView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -26,7 +27,13 @@ const router = createRouter({
       path: '/error',
       name: 'error',
       component: ErrorView
-    }
+    },
+    {
+      path: '/results/:SelectionID',
+      name: 'results',
+      props: true,
+      component: ResultsView
+    },
   ]
 })
 
