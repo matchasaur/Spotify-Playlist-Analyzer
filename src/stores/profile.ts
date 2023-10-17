@@ -18,5 +18,8 @@ export const useProfStore = defineStore('prof', {
     setUserID(user:string | null): void {
       this.user_id = user;
     },
+    removeUserID() {
+      this.user_id = null;
+    },
   },
 });

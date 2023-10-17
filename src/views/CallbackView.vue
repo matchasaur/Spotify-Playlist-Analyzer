@@ -14,6 +14,7 @@ import { waitForDebugger } from 'inspector';
                 } else {
                     const accessToken = await this.getAccessToken(clientId, code);
                     useAuthStore().setAccessToken(accessToken);
+                    localStorage.setItem('token', accessToken);
                     const temp = useAuthStore().getAccessToken;
                     this.$router.push('/dashboard');
                 }
@@ -59,6 +60,7 @@ import { waitForDebugger } from 'inspector';
 
                 const { access_token } = await result.json();
                 useAuthStore().setAccessToken(access_token);
+                localStorage.setItem('token', access_token);
                 const temp = useAuthStore().getAccessToken;
                 return access_token;
             },

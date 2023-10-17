@@ -6,25 +6,24 @@ import { useAuthStore } from './stores/auth';
 </script>
 
 <template>
-  <v-app>
-    <v-row no-gutters style="height: 15%; flex: initial">
-      <v-col>
-        <v-app-bar app class="w-50" style="left: 50%; margin-left: -25%; margin-top: 5dvh;" absolute color="surface-variant" title="Application bar" rounded>
+  <v-app background-color="blue">
+    <div style="background-color:#EEEEEE; min-height: 100vh;">
+        <v-app-bar app class="w-50 text-center" style="left: 50%; margin-left: -25%; margin-top: 5dvh;" absolute
+        color="purple-darken-3" rounded="xl" :elevation="10">
+        <v-app-bar-title class="title">Datafy</v-app-bar-title>
         <login-button></login-button>
-        </v-app-bar>
-      </v-col>
-    </v-row>
-
-    <v-row>
-      <v-col>
-        <v-main>
+      </v-app-bar>
+      <v-main>
         <RouterView></RouterView>
-        </v-main>
-      </v-col>
-    </v-row>
+      </v-main>
+    </div>
   </v-app>
 </template>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Bungee&display=swap');
 
+.title {
+  font-family: 'Bungee', sans-serif;
+}
 </style>

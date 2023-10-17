@@ -11,13 +11,25 @@ export const useAuthStore = defineStore('auth', {
   }),
   getters: {
     getAccessToken(): string | null{
-      return this.accessToken;
+      return localStorage.getItem('token');
     },
-    isAuthenticated: (state) => state.accessToken !== null,
+     async isAuthenticated(): Promise<boolean> {
+      let token = localStorage.getItem('token');
+      console.log('From Auth: ', token);
+      return (token) ? true : false;
+    },
   },
   actions: {
-    setAccessToken(token:string | null): void {
+    setAccessToken(token:string): void {
+      localStorage.setItem('token', token);
       this.accessToken = token;
+    },
+    clearAccessToken(): void {
+      console.log('clearing token');
+      localStorage.removeItem('token');
+      let token = localStorage.getItem('token');
+      this.accessToken = null;
+      console.log(token);
     },
   },
 });
