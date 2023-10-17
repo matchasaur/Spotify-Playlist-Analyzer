@@ -7,25 +7,16 @@ import { useAuthStore } from './stores/auth';
 
 <template>
   <v-app background-color="blue">
-      <v-row style="margin-bottom: 5dvh;">
-        <v-col>
-          <v-app-bar app class="w-50 text-center" style="left: 50%; margin-left: -25%; margin-top: 5dvh;" absolute
-            color="purple-darken-3" rounded="xl" :elevation="10">
-            <v-app-bar-title class="title">Datafy</v-app-bar-title>
-            <login-button></login-button>
-          </v-app-bar>
-        </v-col>
-      </v-row>
-    
-
-
-    <v-row>
-      <v-col>
-        <v-main>
-          <RouterView></RouterView>
-        </v-main>
-      </v-col>
-    </v-row>
+    <div style="background-color:#EEEEEE; min-height: 100vh;">
+        <v-app-bar app class="w-50 text-center" style="left: 50%; margin-left: -25%; margin-top: 5dvh;" absolute
+        color="purple-darken-3" rounded="xl" :elevation="10">
+        <v-app-bar-title class="title">Datafy</v-app-bar-title>
+        <login-button></login-button>
+      </v-app-bar>
+      <v-main>
+        <RouterView></RouterView>
+      </v-main>
+    </div>
   </v-app>
 </template>
 
