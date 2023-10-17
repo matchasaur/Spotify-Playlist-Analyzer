@@ -1,11 +1,10 @@
 <script lang="ts">
 import LoginButton from '@/components/LoginButton.vue';
-import LoginBar from '@/components/LoginBar.vue';
 
 export default {
     methods: {
     },
-    components: { LoginButton, LoginBar,}
+    components: { LoginButton }
 };
 
 </script>
